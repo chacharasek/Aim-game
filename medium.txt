@@ -1,0 +1,6 @@
+maxWidthOfTarget:30
+gameSpeeds:75
+windowHeight:576
+windowWidth:720
+lives:2
+scoreMultiply:2
