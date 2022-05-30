@@ -100,11 +100,11 @@ def drawText(text, surface, x, y, font = FONT, color = RED):
 def populateConfig(difficulty):
     config = {}
     if(difficulty == "easy"):
-        difficultyFile = open("klikacka\easy.txt", "r")
+        difficultyFile = open("Aim-trainer\easy.txt", "r")
     elif(difficulty == "medium"):
-        difficultyFile = open("klikacka\medium.txt", "r")
+        difficultyFile = open("Aim-trainer\medium.txt", "r")
     elif(difficulty == "hard"):
-        difficultyFile = open("klikacka\hard.txt", "r")
+        difficultyFile = open("Aim-trainer\hard.txt", "r")
     for line in difficultyFile:
         splitLine = line.split(":")
         splitLine[1] = splitLine[1].strip("\n")
@@ -290,7 +290,7 @@ def saveScore():
 
 def maxUserScore():
     config = {}
-    leaderFile = open(r"klikacka/leaderboard.ini", 'r')
+    leaderFile = open(r"Aim-trainer/leaderboard.ini", 'r')
 
     for line in leaderFile:
         splitLine = line.split(":")
@@ -305,7 +305,7 @@ def maxUserScore():
 
 def maxBestScore():
     config = {}
-    leaderFile = open(r"klikacka/leaderboard.ini", 'r')
+    leaderFile = open(r"Aim-trainer/leaderboard.ini", 'r')
 
     for line in leaderFile:
         splitLine = line.split(":")
@@ -613,12 +613,12 @@ while True:
                 value = 0
 
             if int(maxBestScore()) < int(score):
-                with open(r"klikacka/leaderboard.ini", 'r+') as config:
+                with open(r"Aim-trainer/leaderboard.ini", 'r+') as config:
                     config.write("maxScore" + ":" + str(score) + "\n")
                     config.seek(0)
 
             if value < score:
-                with open(r"klikacka/leaderboard.ini", 'a') as config:
+                with open(r"Aim-trainer/leaderboard.ini", 'a') as config:
                     config.write(username + ":" + str(score) + "\n")
 
             if playAgain() == "Yes":
