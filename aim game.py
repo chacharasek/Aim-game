@@ -1,4 +1,4 @@
-#Aim trainer
+#Aim game
 
 import pygame, sys, random, time, math, os, configparser
 from pygame.locals import *
@@ -22,7 +22,7 @@ config = configparser.ConfigParser()
 width = 750
 height = 750
 playSurface = pygame.display.set_mode((width, height))
-pygame.display.set_caption('Aim trainer')
+pygame.display.set_caption('Aim game')
 
 #font
 FONT = pygame.font.SysFont(None, 48)
@@ -100,11 +100,11 @@ def drawText(text, surface, x, y, font = FONT, color = RED):
 def populateConfig(difficulty):
     config = {}
     if(difficulty == "easy"):
-        difficultyFile = open("Aim-trainer\easy.txt", "r")
+        difficultyFile = open("Aim-game\easy.txt", "r")
     elif(difficulty == "medium"):
-        difficultyFile = open("Aim-trainer\medium.txt", "r")
+        difficultyFile = open("Aim-game\medium.txt", "r")
     elif(difficulty == "hard"):
-        difficultyFile = open("Aim-trainer\hard.txt", "r")
+        difficultyFile = open("Aim-game\hard.txt", "r")
     for line in difficultyFile:
         splitLine = line.split(":")
         splitLine[1] = splitLine[1].strip("\n")
@@ -290,7 +290,7 @@ def saveScore():
 
 def maxUserScore():
     config = {}
-    leaderFile = open(r"Aim-trainer/leaderboard.ini", 'r')
+    leaderFile = open(r"Aim-game/leaderboard.ini", 'r')
 
     for line in leaderFile:
         splitLine = line.split(":")
@@ -305,7 +305,7 @@ def maxUserScore():
 
 def maxBestScore():
     config = {}
-    leaderFile = open(r"Aim-trainer/leaderboard.ini", 'r')
+    leaderFile = open(r"Aim-game/leaderboard.ini", 'r')
 
     for line in leaderFile:
         splitLine = line.split(":")
@@ -466,7 +466,7 @@ config = populateConfig(difficulty)
 width = config.get("windowWidth")
 height = config.get("windowHeight")
 playSurface = pygame.display.set_mode((width, height))
-pygame.display.set_caption('Aim trainer')
+pygame.display.set_caption('Aim game')
 
 widthMax = config.get("maxWidthOfTarget")
 lives = config.get("lives")
@@ -598,7 +598,7 @@ while True:
                 width = config.get("windowWidth")
                 height = config.get("windowHeight")
                 playSurface = pygame.display.set_mode((width, height))
-                pygame.display.set_caption('Aim trainer')
+                pygame.display.set_caption('Aim game')
 
                 widthMax = config.get("maxWidthOfTarget")
                 lives = config.get("lives")
@@ -613,12 +613,12 @@ while True:
                 value = 0
 
             if int(maxBestScore()) < int(score):
-                with open(r"Aim-trainer/leaderboard.ini", 'r+') as config:
+                with open(r"Aim-game/leaderboard.ini", 'r+') as config:
                     config.write("maxScore" + ":" + str(score) + "\n")
                     config.seek(0)
 
             if value < score:
-                with open(r"Aim-trainer/leaderboard.ini", 'a') as config:
+                with open(r"Aim-game/leaderboard.ini", 'a') as config:
                     config.write(username + ":" + str(score) + "\n")
 
             if playAgain() == "Yes":
@@ -673,7 +673,7 @@ while True:
                 width = config.get("windowWidth")
                 height = config.get("windowHeight")
                 playSurface = pygame.display.set_mode((width, height))
-                pygame.display.set_caption('Aim trainer')
+                pygame.display.set_caption('Aim game')
 
                 widthMax = config.get("maxWidthOfTarget")
                 lives = config.get("lives")
