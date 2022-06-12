@@ -586,6 +586,8 @@ while True:
             else:
                 quit()
         elif option == "Yes":
+            if not isinstance(username, str):
+                username = "none"
             value = config.get(username)
             if isinstance(value, str):
                 value = int(value)
