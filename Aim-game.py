@@ -42,7 +42,6 @@ COLOR_INACTIVE = pygame.Color('lightskyblue3')
 COLOR_ACTIVE = pygame.Color('dodgerblue2')
 
 
-# Gameover function
 def gameOver():
     # font and size
     myFont = pygame.font.SysFont('monaco', 72)
@@ -394,55 +393,53 @@ def menu():
 
         if fgh == "menu":
             menu()
+    else:
+        # Difficulty chooser
+        difficulty = 0
+        timer = 0
+        color = "blue"
+        while True:
+            playSurface.fill("black")
+            difficultyRects = [pygame.Rect(5, 450, 240, 100), pygame.Rect(255, 450, 240, 100),
+                               pygame.Rect(505, 450, 240, 100),
+                               pygame.Rect(255, 575, 240, 100)]
+            for event in pygame.event.get():
+                if event.type == QUIT:
+                    quit()
+                if event.type == KEYDOWN:
+                    if event.key == K_ESCAPE:
+                        quit()
+                if event.type == MOUSEBUTTONDOWN:
+                    if difficultyRects[0].collidepoint(pygame.mouse.get_pos()):
+                        difficulty = "easy"
+                    if difficultyRects[1].collidepoint(pygame.mouse.get_pos()):
+                        difficulty = "medium"
+                    if difficultyRects[2].collidepoint(pygame.mouse.get_pos()):
+                        difficulty = "hard"
+                    if difficultyRects[3].collidepoint(pygame.mouse.get_pos()):
+                        difficulty = "back"
+            for rect in difficultyRects:
+                pygame.draw.rect(playSurface, "red", rect)
+            drawText("Pick a difficulty", playSurface, 90, 150, pygame.font.SysFont(None, 112), color)
+            drawText("Easy", playSurface, 83, 485, FONT, "black")
+            drawText("Medium", playSurface, 312, 485, FONT, "black")
+            drawText("Hard", playSurface, 580, 485, FONT, "black")
+            drawText("Back", playSurface, 330, 610, FONT, "black")
+            fpsController.tick(50)
+            timer += 1
+            if timer % 100 == 0:
+                color = "blue"
+            elif timer % 50 == 0:
+                color = "red"
+            pygame.display.update()
+            if difficulty != 0:
+                break
+
+        if difficulty == "back":
+            menu()
 
 
 menu()
-# Difficulty chooser
-option = 0
-difficulty = 0
-timer = 0
-color = "blue"
-switch = False
-while True:
-    playSurface.fill("black")
-    difficultyRects = [pygame.Rect(5, 450, 240, 100), pygame.Rect(255, 450, 240, 100), pygame.Rect(505, 450, 240, 100),
-                       pygame.Rect(255, 575, 240, 100)]
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            quit()
-        if event.type == KEYDOWN:
-            if event.key == K_ESCAPE:
-                quit()
-        if event.type == MOUSEBUTTONDOWN:
-            if difficultyRects[0].collidepoint(pygame.mouse.get_pos()):
-                difficulty = "easy"
-            if difficultyRects[1].collidepoint(pygame.mouse.get_pos()):
-                difficulty = "medium"
-            if difficultyRects[2].collidepoint(pygame.mouse.get_pos()):
-                difficulty = "hard"
-            if difficultyRects[2].collidepoint(pygame.mouse.get_pos()):
-                option = "back"
-                break
-    for rect in difficultyRects:
-        pygame.draw.rect(playSurface, "red", rect)
-    drawText("Pick a difficulty", playSurface, 90, 150, pygame.font.SysFont(None, 112), color)
-    drawText("Easy", playSurface, 83, 485, FONT, "black")
-    drawText("Medium", playSurface, 312, 485, FONT, "black")
-    drawText("Hard", playSurface, 580, 485, FONT, "black")
-    drawText("Back", playSurface, 330, 610, FONT, "black")
-    fpsController.tick(50)
-    timer += 1
-    if timer % 100 == 0:
-        color = "blue"
-    elif timer % 50 == 0:
-        color = "red"
-    pygame.display.update()
-    if difficulty != 0:
-        break
-
-if option == "back":
-    menu()
-    pygame.display.update()
 
 main()
 
