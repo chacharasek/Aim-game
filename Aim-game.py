@@ -285,7 +285,7 @@ def saveScore():
 
 def maxUserScore():
     config = {}
-    leaderFile = open(r"klikacka/leaderboard.ini", 'r')
+    leaderFile = open("leaderboard.ini", 'r')
 
     for line in leaderFile:
         splitLine = line.split(":")
@@ -301,7 +301,7 @@ def maxUserScore():
 
 def maxBestScore():
     config = {}
-    leaderFile = open(r"klikacka/leaderboard.ini", 'r')
+    leaderFile = open("leaderboard.ini", 'r')
 
     for line in leaderFile:
         splitLine = line.split(":")
@@ -438,9 +438,10 @@ def menu():
 
         if difficulty == "back":
             menu()
+    return difficulty
 
 
-menu()
+difficulty = menu()
 
 main()
 
@@ -587,8 +588,6 @@ while True:
             else:
                 quit()
         elif option == "Yes":
-            if not isinstance(username, str):
-                username = "none"
             value = config.get(username)
             if isinstance(value, str):
                 value = int(value)
@@ -596,12 +595,12 @@ while True:
                 value = 0
 
             if int(maxBestScore()) < int(score):
-                with open(r"klikacka/leaderboard.ini", 'r+') as config:
+                with open("leaderboard.ini", 'r+') as config:
                     config.write("maxScore" + ":" + str(score) + "\n")
                     config.seek(0)
 
             if value < score:
-                with open(r"klikacka/leaderboard.ini", 'a') as config:
+                with open("leaderboard.ini", 'a') as config:
                     config.write(username + ":" + str(score) + "\n")
 
             if playAgain() == "Yes":
