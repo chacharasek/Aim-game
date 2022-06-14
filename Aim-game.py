@@ -313,6 +313,7 @@ def maxBestScore():
 
 def menu():
     # Menu
+    difficulty = 0
     setting = 0
     timer = 0
     color = "blue"
