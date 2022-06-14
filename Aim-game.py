@@ -165,7 +165,6 @@ def main():
     while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                done = True
                 quit()
             for box in input_boxes:
                 box.handle_event(event)
