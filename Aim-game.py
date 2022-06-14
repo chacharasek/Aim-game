@@ -54,9 +54,6 @@ def gameOver():
     pygame.display.flip()
     # wait 3 seconds
     time.sleep(3)
-    # close window
-    pygame.quit()
-    sys.exit()
 
 
 def showScore(choice=1):
@@ -529,6 +526,7 @@ while True:
                            (point[0], point[1]), point[2])
     # if you don't have any lives
     if lives <= 0:
+        gameOver()
         option = saveScore()
         if option == "No":
             if playAgain() == "Yes":
